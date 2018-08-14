@@ -1,0 +1,20 @@
+version: '2'
+services:
+  node1:
+    image: ethereum/aleth:1.4.0rc1
+    ports:
+      - "30303:30303"
+      - "8545:8545"
+    volumes:
+      - ./keys/0:/.ethereum
+      - ./ewasm-testnet-cpp-config.json:/ewasm-testnet-cpp-config.json
+    command: --db-path /.ethereum --peerset "required:enode://68e6383c649935649723fc44bb4a94bd2019c29a828cb7ee8151abda9567417797fec213f4b60b59d84faac62577814d63cc5d7cc7d4bc09730ea4f43e9f44db@127.0.0.1:30303 required:enode://981a57a531a8e04dc44a31beddbaca772672d238c94d3da35dc420eb2398b6500d66121f83cb94d06b99df5b459376449458093ad149fc064133e10aae56ae3c@127.0.0.1:30304" --log-verbosity 12 --no-discover --no-bootstrap --pin --listen-ip 127.0.0.1 --listen 30303 --mining on --mode full --mining-threads 1 --address e2a6f75d132c092f63a4778d593713d2e44496a9 --config /ewasm-testnet-cpp-config.json
+  node2:
+    image: ethereum/aleth:1.4.0rc1
+    ports:
+      - "30304:30304"
+      - "8546:8546"
+    volumes:
+      - ./keys/1:/.ethereum
+      - ./ewasm-testnet-cpp-config.json:/ewasm-testnet-cpp-config.json
+    command: --db-path /.ethereum --peerset "required:enode://68e6383c649935649723fc44bb4a94bd2019c29a828cb7ee8151abda9567417797fec213f4b60b59d84faac62577814d63cc5d7cc7d4bc09730ea4f43e9f44db@127.0.0.1:30303 required:enode://981a57a531a8e04dc44a31beddbaca772672d238c94d3da35dc420eb2398b6500d66121f83cb94d06b99df5b459376449458093ad149fc064133e10aae56ae3c@127.0.0.1:30304" --log-verbosity 12 --no-discover --no-bootstrap --pin --listen-ip 127.0.0.1 --listen 30304 --mining on --mode full --mining-threads 1 --address e2a6f75d132c092f63a4778d593713d2e44496a9 --config /ewasm-testnet-cpp-config.json
